@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "cobblemon_move_inspector",
+  "version": "1.0.0",
+  "name": "Cobblemon Move Inspector",
+  "description": "In-battle move inspection for Cobblemon",
+  "icon": "assets/cobblemon_move_inspector/icon.png",
+  "authors": [
+    "Starlotte"
+  ],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.starlotte.cobblemon_move_inspector.client.CobblemonMoveInspectorClient"
+    ]
+  },
+  "mixins": [ "cobblemon_move_inspector.mixins.json"],
+  "accessWidener": "cobblemon_move_inspector.accesswidener",
+  "depends": {
+    "java": ">=17",
+    "minecraft": ">=1.20.1",
+    "fabricloader": ">=0.14.21",
+    "fabric-api": "*",
+    "cobblemon": ">=1.5.0"
+  }
+}

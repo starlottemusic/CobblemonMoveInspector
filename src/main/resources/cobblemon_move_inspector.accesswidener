@@ -1,0 +1,5 @@
+accessWidener v2 named
+
+accessible field com/cobblemon/mod/common/client/gui/battle/subscreen/BattleMoveSelection$MoveTile move Z
+
+accessible method com/cobblemon/mod/common/client/gui/battle/subscreen/BattleMoveSelection$MoveTile getMove (Lcom/cobblemon/mod/common/client/gui/battle/subscreen/BattleMoveSelection$MoveTile;)V
