@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "cobblemon_move_inspector",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Cobblemon Move Inspector",
   "description": "In-battle move inspection for Cobblemon",
   "icon": "assets/cobblemon_move_inspector/icon.png",
