@@ -68,7 +68,9 @@ public abstract class BattleMoveSelectionGUIMixin {
                     ElementalType opponentSecondType = properties.getSecondaryType();
 
                     float effectiveness = MoveEffectivenessLookup.getModifier(moveTemplate.getElementalType(), opponentFirstType, opponentSecondType);
-                    if (effectiveness > 1) {
+                    if (effectiveness == 0) {
+                        tooltipInfo.add(MutableText.of(new LiteralTextContent("Immune")).formatted(Formatting.ITALIC, Formatting.GRAY));
+                    } else if (effectiveness > 1) {
                         tooltipInfo.add(MutableText.of(new LiteralTextContent(effectiveness + "x Super Effective")).formatted(Formatting.BOLD, Formatting.GOLD));
                     } else if (effectiveness < 1) {
                         tooltipInfo.add(MutableText.of(new LiteralTextContent(effectiveness + "x Ineffective")).formatted(Formatting.ITALIC, Formatting.GRAY));
