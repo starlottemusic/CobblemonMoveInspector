@@ -1,14 +1,12 @@
 package com.starlotte.cobblemon_move_inspector.client;
 
-import com.cobblemon.mod.common.api.gui.MultiLineLabelK;
 import com.cobblemon.mod.common.api.types.ElementalType;
 import com.cobblemon.mod.common.api.types.ElementalTypes;
-import drai.dev.gravelsextendedbattles.fabric.mixin.ElementalTypesMixin;
+import drai.dev.gravelsextendedbattles.fabric.GravelmonFabricConfig;
 import net.fabricmc.loader.api.FabricLoader;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class MoveEffectivenessLookup {
 
@@ -92,7 +90,7 @@ public class MoveEffectivenessLookup {
         addToMap(weakMap, fire, fire, water, rock, dragon);
         addToMap(weakMap, water, water, grass, dragon);
         addToMap(weakMap, grass, fire, grass, poison, flying, bug, dragon, steel);
-        addToMap(weakMap, electric);
+        addToMap(weakMap, electric, grass, electric, dragon);
         addToMap(weakMap, ice, fire, water, ice, steel);
         addToMap(weakMap, fighting, poison, flying, psychic, bug, fairy);
         addToMap(weakMap, poison, poison, ground, rock, ghost);
@@ -100,7 +98,7 @@ public class MoveEffectivenessLookup {
         addToMap(weakMap, flying, electric, rock, steel);
         addToMap(weakMap, psychic, psychic, steel);
         addToMap(weakMap, bug, fire, fighting, poison, flying, ghost, steel, fairy);
-        addToMap(weakMap, rock, fighting, flying, steel);
+        addToMap(weakMap, rock, ground, fighting, steel);
         addToMap(weakMap, ghost, dark);
         addToMap(weakMap, dragon, steel);
         addToMap(weakMap, dark, fighting, dark, fairy);
@@ -112,7 +110,7 @@ public class MoveEffectivenessLookup {
         addToMap(strongMap, fire, grass, ice, bug, steel);
         addToMap(strongMap, water, fire, ground, rock);
         addToMap(strongMap, grass, water, ground, rock);
-        addToMap(strongMap, electric, water, ground, rock);
+        addToMap(strongMap, electric, water, ground);
         addToMap(strongMap, ice, grass, ground, flying, dragon);
         addToMap(strongMap, fighting, normal, ice, rock, dark, steel);
         addToMap(strongMap, poison, grass, fairy);
@@ -125,7 +123,7 @@ public class MoveEffectivenessLookup {
         addToMap(strongMap, dragon, dragon);
         addToMap(strongMap, dark, psychic, ghost);
         addToMap(strongMap, steel, ice, rock, fairy);
-        addToMap(strongMap, fairy, fighting, ghost, dragon);
+        addToMap(strongMap, fairy, fighting, dark, dragon);
 
 
         // ATTACKER CANNOT HIT
@@ -165,6 +163,7 @@ public class MoveEffectivenessLookup {
             ElementalType wind = ElementalTypes.INSTANCE.get("wind");
             ElementalType eldritch = ElementalTypes.INSTANCE.get("eldritch");
 
+            if (!GravelmonFabricConfig.enableFangameTypechart)
             // ATTACKER IS WEAK AGAINST
             appendMap(weakMap, normal, eldritch);
             appendMap(weakMap, fire, cosmic, light, wind);
@@ -263,6 +262,9 @@ public class MoveEffectivenessLookup {
             addToMap(immuneMap, sound, cosmic);
             addToMap(immuneMap, wind, cosmic);
             addToMap(immuneMap, eldritch);
+        } else {
+          /* don't really wanna go through and do this now. will either figure
+             out how to do this properly or suck it up and fix it later */
         }
     }
 }
