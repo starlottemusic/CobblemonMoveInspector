@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.starlotte.cobblemon_move_inspector"
-version = "1.0.1"
+version = "1..1.0"
 
 
 repositories {
