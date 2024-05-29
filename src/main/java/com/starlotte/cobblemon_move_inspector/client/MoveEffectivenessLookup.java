@@ -47,6 +47,7 @@ public class MoveEffectivenessLookup {
     }
 
     static {
+        typeChartGetter.openConnection();
         typeChartGetter.getTypeChart(typeChart);
     }
 }

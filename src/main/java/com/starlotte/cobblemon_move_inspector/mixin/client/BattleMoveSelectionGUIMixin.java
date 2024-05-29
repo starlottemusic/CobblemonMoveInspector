@@ -35,7 +35,7 @@ public abstract class BattleMoveSelectionGUIMixin {
     @Shadow
     public MoveTemplate moveTemplate;
 
-    @Inject(method = "render", at = @At(value = "HEAD"))
+    @Inject(method = "render", at = @At(value = "TAIL"))
     public void tooltipRenderMixin(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) throws ScriptException, IOException {
         // This whole thing is SO janky lmfao
         if (this.isHovered(mouseX, mouseY)) {
