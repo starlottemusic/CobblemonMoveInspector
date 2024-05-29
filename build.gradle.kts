@@ -28,8 +28,8 @@ dependencies {
 
 //    modImplementation("curse.maven:gravelmon-928129:5337260")
 //    modImplementation("curse.maven:gravels-extended-battles-930317:5337280")
-    modImplementation("curse.maven:architectury-api-419699:5137936")
-    modImplementation("curse.maven:midnightlib-488090:4576371")
+//    modImplementation("curse.maven:architectury-api-419699:5137936")
+//    modImplementation("curse.maven:midnightlib-488090:4576371")
 }
 
 tasks {

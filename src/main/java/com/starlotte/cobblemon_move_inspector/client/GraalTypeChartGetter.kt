@@ -1,5 +1,6 @@
 package com.starlotte.cobblemon_move_inspector.client
 
+import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.battles.runner.ShowdownService
 import com.cobblemon.mod.common.battles.runner.graal.GraalLogger
 import com.cobblemon.mod.common.battles.runner.graal.GraalShowdownService
@@ -16,7 +17,7 @@ class GraalTypeChartGetter {
 
     // Creates separate context, switch to this instead if reusing Cobblemon's context ends up causing issues
 
-        @Transient
+    @Transient
     lateinit var context: Context
     @Transient
     val unbundler = GraalShowdownUnbundler()
@@ -24,7 +25,9 @@ class GraalTypeChartGetter {
     fun openConnection() {
         unbundler.attemptUnbundle()
         createContext()
-        context.eval("js", File("showdown/data/mods/cobblemon/typechart.js").readText())
+        if (File("showdown/data/mods/cobblemon/typechart.js").isFile) context.eval("js", File("showdown/data/mods/cobblemon/typechart.js").readText())
+        else if (File("showdown/data/typechart.js").isFile) context.eval("js", File("showdown/data/typechart.js").readText())
+        else Cobblemon.LOGGER.error("Hacked JS files in datapacks or some weird file system setup that Star failed to anticipate.")
     }
 
     private fun createContext() {
