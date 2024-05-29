@@ -25,8 +25,8 @@ class GraalTypeChartGetter {
     fun openConnection() {
         unbundler.attemptUnbundle()
         createContext()
-        if (File("showdown/data/mods/cobblemon/typechart.js").isFile) context.eval("js", File("showdown/data/mods/cobblemon/typechart.js").readText())
-        else if (File("showdown/data/typechart.js").isFile) context.eval("js", File("showdown/data/typechart.js").readText())
+        if (File("showdown/data/typechart.js").isFile) context.eval("js", File("showdown/data/typechart.js").readText())
+        else if (File("showdown/data/mods/cobblemon/typechart.js").isFile) context.eval("js", File("showdown/data/mods/cobblemon/typechart.js").readText())
         else Cobblemon.LOGGER.error("Hacked JS files in datapacks or some weird file system setup that Star failed to anticipate.")
     }
 
