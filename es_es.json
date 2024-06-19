@@ -1,0 +1,8 @@
+{
+  "move.inspector.power": "Potencia: %d",
+  "move.inspector.accuracy": "Precision: %d%%",
+  "move.inspector.effect": "Efecto: %d%%",
+  "move.inspector.immune": "Sin efecto",
+  "move.inspector.effective": "X%f Super Efectivo",
+  "move.inspector.ineffective": "X%f Poco Eficaz"
+}
