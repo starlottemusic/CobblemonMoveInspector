@@ -51,11 +51,11 @@ public abstract class BattleMoveSelectionGUIMixin {
             if (moveTemplate.getDamageCategory() != DamageCategories.INSTANCE.getSTATUS() || moveTemplate.getAccuracy() != -1.0 || moveTemplate.getEffectChances().length != 0) {
                 tooltipInfo.add(Text.of(""));
                 if (moveTemplate.getPower() > 0)
-                    tooltipInfo.add(Text.of("Power: " + (int) moveTemplate.getPower()));
+                    tooltipInfo.add(Text.translatable("move.inspector.power", (int) moveTemplate.getPower()));
                 if (moveTemplate.getAccuracy() > 0)
-                    tooltipInfo.add(Text.of("Accuracy: " + (int) moveTemplate.getAccuracy() + "%"));
+                    tooltipInfo.add(Text.translatable("move.inspector.accuracy", (int) moveTemplate.getAccuracy()));
                 if (moveTemplate.getEffectChances().length != 0)
-                    tooltipInfo.add(Text.of("Effect: " + Math.round(moveTemplate.getEffectChances()[0]) + "%"));
+                    tooltipInfo.add(Text.translatable("move.inspector.effect",Math.round(moveTemplate.getEffectChances()[0])));
             }
 
             ClientBattle battle = CobblemonClient.INSTANCE.getBattle();
@@ -72,11 +72,11 @@ public abstract class BattleMoveSelectionGUIMixin {
 
                     float effectiveness = MoveEffectivenessLookup.getModifier(moveTemplate, opponentFirstType, opponentSecondType);
                     if (effectiveness == 0) {
-                        tooltipInfo.add(MutableText.of(new LiteralTextContent("Immune")).formatted(Formatting.ITALIC, Formatting.GRAY));
+                        tooltipInfo.add(Text.translatable("move.inspector.immune").formatted(Formatting.ITALIC, Formatting.GRAY));
                     } else if (effectiveness > 1) {
-                        tooltipInfo.add(MutableText.of(new LiteralTextContent(effectiveness + "x Super Effective")).formatted(Formatting.BOLD, Formatting.GOLD));
+                        tooltipInfo.add(Text.translatable("move.inspector.effective", effectiveness).formatted(Formatting.BOLD, Formatting.GOLD));
                     } else if (effectiveness < 1) {
-                        tooltipInfo.add(MutableText.of(new LiteralTextContent(effectiveness + "x Ineffective")).formatted(Formatting.ITALIC, Formatting.GRAY));
+                        tooltipInfo.add(Text.translatable("move.inspector.ineffective", effectiveness).formatted(Formatting.ITALIC, Formatting.GRAY));
                     }
                 }
             }
