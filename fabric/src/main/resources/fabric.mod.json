@@ -10,7 +10,7 @@
   "contact": {
     "homepage": ""
   },
-  "license": "All-Rights-Reserved",
+  "license": "MIT",
   "icon": "assets/cobblemon_move_inspector/icon.png",
   "environment": "*",
   "entrypoints": {
