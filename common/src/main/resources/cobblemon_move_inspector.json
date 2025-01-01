@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.starlotte.cobblemon_move_inspector.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "client": [
+  ],
+  "mixins": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,32 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+#issueTrackerURL = ""
+license = "All Rights Reserved"
+
+[[mods]]
+modId = "cobblemon_move_inspector"
+version = "${version}"
+displayName = "Cobblemon Move Inspector"
+authors = "Starlotte"
+description = '''
+In-battle move inspection for Cobblemon
+'''
+logoFile = "assets/cobblemon_move_inspector/icon.png"
+
+[[dependencies.cobblemon_move_inspector]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.cobblemon_move_inspector]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+
+[[mixins]]
+config = "cobblemon_move_inspector.mixins.json"

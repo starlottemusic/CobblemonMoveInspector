@@ -1,0 +1,73 @@
+plugins {
+    id 'com.github.johnrengelman.shadow'
+}
+
+architectury {
+    platformSetupLoomIde()
+    fabric()
+}
+
+configurations {
+    common {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentFabric.extendsFrom common
+
+    // Files in this configuration will be bundled into your mod using the Shadow plugin.
+    // Don't use the `shadow` configuration from the plugin itself as it's meant for excluding files.
+    shadowBundle {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+}
+
+repositories {
+    maven { url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/" }
+    maven { url = "https://maven.impactdev.net/repository/development/" }
+    maven { url = "https://oss.sonatype.org/content/repositories/snapshots" }
+    maven { url = "https://cursemaven.com" }
+    mavenCentral()
+
+    maven { // Fabric ASM
+        name = "Jitpack"
+        url 'https://jitpack.io/'
+    }
+    maven{
+        url = "https://api.modrinth.com/maven"
+    }
+}
+
+dependencies {
+    modImplementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
+
+    modImplementation "net.fabricmc.fabric-api:fabric-api:$rootProject.fabric_api_version"
+
+    modImplementation("net.fabricmc:fabric-language-kotlin:${rootProject.fabric_language_kotlin_version}")
+
+    modImplementation "com.cobblemon:fabric:1.6.0+1.21.1"
+//    modImplementation "curse.maven:gravelmon-928129:5337260" // GRAVELMON NOT UPDATED AT THIS TIME
+//    modImplementation "curse.maven:gravels-extended-battles-930317:5337280" // GRAVELMON NOT UPDATED AT THIS TIME
+
+    common(project(path: ':common', configuration: 'namedElements')) { transitive false }
+    shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
+}
+
+processResources {
+    inputs.property 'version', project.version
+
+    filesMatching('fabric.mod.json') {
+        expand version: project.version
+    }
+}
+
+shadowJar {
+    configurations = [project.configurations.shadowBundle]
+    archiveClassifier = 'dev-shadow'
+}
+
+remapJar {
+    input.set shadowJar.archiveFile
+}
