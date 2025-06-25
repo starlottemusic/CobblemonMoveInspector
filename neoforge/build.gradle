@@ -47,7 +47,8 @@ dependencies {
 
     modImplementation "dev.architectury:architectury-neoforge:$rootProject.architectury_api_version"
 
-    modImplementation "com.cobblemon:neoforge:1.6.0+1.21.1"
+    modImplementation "com.cobblemon:neoforge:1.6.1+1.21.1"
+
 //    modImplementation "curse.maven:gravelmon-928129:5337260" // GRAVELMON NOT UPDATED AT THIS TIME
 //    modImplementation "curse.maven:gravels-extended-battles-930317:5337280" // GRAVELMON NOT UPDATED AT THIS TIME
 
