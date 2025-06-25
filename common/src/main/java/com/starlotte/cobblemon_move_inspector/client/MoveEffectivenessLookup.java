@@ -95,6 +95,14 @@ public class MoveEffectivenessLookup {
         if (matchesType(defenderType1, defenderType2, "electric")){
             
         }
+
+        // Ground Case (Thunder Wave)
+        if (matchesType(defenderType1, defenderType2, "ground")) {
+            // Funk with Languages prob
+            if(move.getName().equals("thunder wave")) {
+                return 0;
+            }
+        }
     }
 
     /**
@@ -105,6 +113,8 @@ public class MoveEffectivenessLookup {
      * @param targetType String of Type
      * 
      * @return if either type matches
+     * 
+     * @author LukyStudios
      */
     private static boolean matchesType(ElementalType type1, ElementalType type2, String targetType) {
         return type1 != null ? type1.getName().equals(targetType) : false 
