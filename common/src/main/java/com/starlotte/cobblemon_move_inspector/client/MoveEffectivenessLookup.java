@@ -17,6 +17,7 @@ import net.minecraft.server.level.ServerPlayer;
 import java.util.HashMap;
 import java.util.UUID;
 import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class MoveEffectivenessLookup {
     private static final HashMap<String, HashMap<String, Integer>> typeChart = new HashMap<>();
@@ -36,10 +37,10 @@ public class MoveEffectivenessLookup {
     public static float getModifier(MoveTemplate move, ElementalType defenderType1, ElementalType defenderType2,
             UUID player) {
         // Switching how modifier to handled based off Damage Category
-        switch (move.getDamageCategory()) {
-            case "Status":
+        if (move.getDamageCategory().equals("status")) {
                 return getStatusModifier(move, defenderType1, defenderType2);
-            default:
+        }
+        else{
                 return getAttackModifier(move, defenderType1, defenderType2);
         }
     }
@@ -61,7 +62,7 @@ public class MoveEffectivenessLookup {
         float damageMult = 1;
 
         // Ignore if not targetting opponent
-        if (move.getTarget() == "self") {
+        if (move.getTarget().equals("self")) {
             return damageMult;
         }
 
@@ -75,7 +76,7 @@ public class MoveEffectivenessLookup {
 
             // Funk with Languages prob
             if (powderMatcher.find() || sporeMatcher.find() || move.getName().equals("leech seed")) {
-                return 0;
+                damageMult *= 0;
             }
         }
 
@@ -100,9 +101,11 @@ public class MoveEffectivenessLookup {
         if (matchesType(defenderType1, defenderType2, "ground")) {
             // Funk with Languages prob
             if(move.getName().equals("thunder wave")) {
-                return 0;
+                damageMult *= 0;
             }
         }
+
+        return damageMult;
     }
 
     /**
