@@ -45,7 +45,8 @@ public class MoveEffectivenessLookup {
     }
 
     /**
-     * Modifier for Status Moves on whether it will be Immune or not. (Needs to be tested with other languages)
+     * Modifier for Status Moves on whether it will be Immune or not. (Needs to be
+     * tested with other languages)
      * 
      * @param move          Hovered [MoveTemplate]
      * @param defenderType1 Targetted Pokemon's Primary [ElementalType]
@@ -65,7 +66,7 @@ public class MoveEffectivenessLookup {
         }
 
         // Grass Case (...Powder, ...Spore, Leed Seed)
-        if(defenderType1.getName() == "Grass" || defenderType2.getName() == "Grass") {
+        if (matchesType(defenderType1, defenderType2, "Grass")) {
             Pattern powderPattern = Pattern.compile("powder", Pattern.CASE_INSENSITIVE);
             Matcher powderMatcher = powderPattern.matcher(move.getName());
 
@@ -79,12 +80,34 @@ public class MoveEffectivenessLookup {
         }
 
         // Fire Case (Burn Effect)
+        if (matchesType(defenderType1, defenderType2, "Fire")){
+
+        }
 
         // Poison Case (Poison Effect)
-
         // Steel Case (Poison Effect)
+        if (matchesType(defenderType1, defenderType2, "Poison") || matchesType(defenderType1, defenderType2, "Steel")){
+            
+        }
 
         // Electric Case (Paralysis Effect)
+        if (matchesType(defenderType1, defenderType2, "Electric")){
+            
+        }
+    }
+
+    /**
+     * Checks to see if either of a Pokemon's type matches the desired type
+     * 
+     * @param type1 Pokemon's Primary [ElementalType]
+     * @param type2 Pokemon's Secondary [ElementalType]
+     * @param targetType String of Type
+     * 
+     * @return if either type matches
+     */
+    private static boolean matchesType(ElementalType type1, ElementalType type2, String targetType) {
+        return type1 != null ? type1.getName().equals(targetType) : false 
+                || type2 != null ? type2.getName().equals(targetType) : false;
     }
 
     /**
