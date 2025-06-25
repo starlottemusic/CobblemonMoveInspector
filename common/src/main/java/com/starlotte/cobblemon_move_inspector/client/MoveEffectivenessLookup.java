@@ -66,7 +66,7 @@ public class MoveEffectivenessLookup {
         }
 
         // Grass Case (...Powder, ...Spore, Leed Seed)
-        if (matchesType(defenderType1, defenderType2, "Grass")) {
+        if (matchesType(defenderType1, defenderType2, "grass")) {
             Pattern powderPattern = Pattern.compile("powder", Pattern.CASE_INSENSITIVE);
             Matcher powderMatcher = powderPattern.matcher(move.getName());
 
@@ -74,24 +74,25 @@ public class MoveEffectivenessLookup {
             Matcher sporeMatcher = sporePattern.matcher(move.getName());
 
             // Funk with Languages prob
-            if (powderMatcher.find() || sporeMatcher.find() || move.getName() == "Leech Seed") {
+            if (powderMatcher.find() || sporeMatcher.find() || move.getName().equals("leech seed")) {
                 return 0;
             }
         }
 
         // Fire Case (Burn Effect)
-        if (matchesType(defenderType1, defenderType2, "Fire")){
+        if (matchesType(defenderType1, defenderType2, "fire")){
 
         }
 
         // Poison Case (Poison Effect)
         // Steel Case (Poison Effect)
-        if (matchesType(defenderType1, defenderType2, "Poison") || matchesType(defenderType1, defenderType2, "Steel")){
+        if (matchesType(defenderType1, defenderType2, "poison") 
+                || matchesType(defenderType1, defenderType2, "steel")) {
             
         }
 
         // Electric Case (Paralysis Effect)
-        if (matchesType(defenderType1, defenderType2, "Electric")){
+        if (matchesType(defenderType1, defenderType2, "electric")){
             
         }
     }
