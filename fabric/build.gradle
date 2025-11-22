@@ -29,6 +29,7 @@ repositories {
     maven { url = "https://maven.impactdev.net/repository/development/" }
     maven { url = "https://oss.sonatype.org/content/repositories/snapshots" }
     maven { url = "https://cursemaven.com" }
+    maven { url = "https://api.modrinth.com/maven" }
     mavenCentral()
 
     maven { // Fabric ASM
@@ -47,7 +48,7 @@ dependencies {
 
     modImplementation("net.fabricmc:fabric-language-kotlin:${rootProject.fabric_language_kotlin_version}")
 
-    modImplementation "com.cobblemon:fabric:1.6.1+1.21.1"
+    modImplementation "maven.modrinth:cobblemon:Ygf8KJFC"
 //    modImplementation "curse.maven:gravelmon-928129:5337260" // GRAVELMON NOT UPDATED AT THIS TIME
 //    modImplementation "curse.maven:gravels-extended-battles-930317:5337280" // GRAVELMON NOT UPDATED AT THIS TIME
 
