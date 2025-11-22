@@ -1,0 +1,8 @@
+{
+  "move.inspector.power": "Потужність: %d",
+  "move.inspector.accuracy": "Точність: %d%%",
+  "move.inspector.effect": "Ефект: %d%%",
+  "move.inspector.immune": "Імунітет",
+  "move.inspector.effective": "x%f Супер ефективно",
+  "move.inspector.ineffective": "x%f Не ефективно"
+}
