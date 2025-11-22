@@ -65,7 +65,7 @@ class GraalTypeChartGetter {
         """.trimIndent())
     }
 
-    fun getTypeChart(typeMap : HashMap<String, HashMap<String, Integer>>) {
+    fun getTypeChart(typeMap : HashMap<String, HashMap<String, Float>>) {
         /*
         //Maybe figure out a way to just copy this context as I don't feel comfy changing values inside of it - cyvack
         val service = ShowdownService.service as GraalShowdownService
@@ -77,16 +77,22 @@ class GraalTypeChartGetter {
 
         val keys = getCobbledTypeChart.memberKeys
         for (elementalKey in keys) {
-            val matchupMap = HashMap<String, Integer>()
+            val matchupMap = HashMap<String, Float>()
             val elementalIntMatchup = getCobbledTypeChart.getMember(elementalKey).getMember("damageTaken")
 
             for (elementalMatchup in elementalIntMatchup.memberKeys) {
-                val damage = elementalIntMatchup.getMember(elementalMatchup).asInt()
-                matchupMap[elementalMatchup.lowercase()] = damage as Integer
+                val damageID = elementalIntMatchup.getMember(elementalMatchup).asInt()
+                var damageMult = 1f;
+                when (damageID) {
+                    1 -> damageMult = 2f
+                    2 -> damageMult = 0.5f;
+                    3 -> damageMult = 0f;
+                }
+                matchupMap[elementalMatchup.lowercase()] = damageMult;
             }
 
             typeMap[elementalKey.lowercase()] = matchupMap
-//            println("Computing matchups for: $elementalKey : $matchupMap")
+            println("Computing matchups for: $elementalKey : $matchupMap")
         }
     }
 }

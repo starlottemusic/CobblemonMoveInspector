@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class MoveEffectivenessLookup {
-    private static final HashMap<String, HashMap<String, Integer>> typeChart = new HashMap<>();
+    private static final HashMap<String, HashMap<String, Float>> typeChart = new HashMap<>();
     private static final GraalTypeChartGetter typeChartGetter = new GraalTypeChartGetter();
 
     public static float getModifier(MoveTemplate move, ElementalType defenderType1, ElementalType defenderType2, UUID player) {
@@ -27,26 +27,28 @@ public class MoveEffectivenessLookup {
 
         // Check special conditions for move (eg. steel immune to sandstorm)
         if (move != null) {
-            if (defenderType1 != null) damageMult *= getMultFromType(move.getName(), defenderType1.getName());
-            if (defenderType2 != null) damageMult *= getMultFromType(move.getName(), defenderType2.getName());
+            if (defenderType1 != null) damageMult *= getMultFromType(move.getName(), moveType.getName(), defenderType1.getName());
+            if (defenderType2 != null) damageMult *= getMultFromType(move.getName(), moveType.getName(), defenderType2.getName());
         }
-        // Check type matchup
-        if (defenderType1 != null) damageMult *= getMultFromType(moveType.getName(), defenderType1.getName());
-        if (defenderType2 != null) damageMult *= getMultFromType(moveType.getName(), defenderType2.getName());
-
         return damageMult;
     }
 
-    public static float getMultFromType(String moveName, String typeName) {
-        HashMap<String, Integer> matchupMap = typeChart.get(typeName);
+    public static float getMultFromType(String moveName, String moveType, String defenderType) {
+        HashMap<String, Float> matchupMap = typeChart.get(defenderType.toLowerCase());
+        float multPower = 1;
+
         if (matchupMap == null)
-            return 1;
+            return multPower;
 
-        Integer damageType = matchupMap.get(moveName);
-        if (damageType == null)
-            return 1;
+        Float moveDamageType = matchupMap.get(moveName.toLowerCase());
+        if (moveDamageType != null && !moveName.equals(moveType))
+            multPower *= moveDamageType;
 
-        return getMult(damageType);
+        Float typeDamageType = matchupMap.get(moveType.toLowerCase());
+        if (typeDamageType != null)
+            multPower *= typeDamageType;
+
+        return multPower;
     }
 
     public static float getMult(int damage) {
